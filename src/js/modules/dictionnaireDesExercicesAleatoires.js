@@ -83,6 +83,20 @@ export default {
     "interactifReady": false,
     "name": "2G50-1"
   },
+  "2G50-2": {
+    "titre": "Lecture graphique des coefficients d'une équation réduite ",
+    "url": "/exercices/2e/2G50-2.js",
+    "amcReady": false,
+    "interactifReady": false,
+    "name": "2G50-2"
+  },
+  "2G50-21": {
+    "titre": "Lecture graphique des coefficients d'une équation réduite ",
+    "url": "/exercices/2e/2G50-21.js",
+    "amcReady": false,
+    "interactifReady": false,
+    "name": "2G50-21"
+  },
   "2G50": {
     "titre": "Déterminer le coefficient directeur d'une droite.",
     "url": "/exercices/2e/2G50.js",
@@ -90,6 +104,13 @@ export default {
     "interactifReady": true,
     "interactifType": "mathLive",
     "name": "2G50"
+  },
+  "2G51-3": {
+    "titre": "Equation réduite de droite et représentation graphique ",
+    "url": "/exercices/2e/2G51-3.js",
+    "amcReady": false,
+    "interactifReady": false,
+    "name": "2G51-3"
   },
   "2L10": {
     "titre": "Développer avec les identités remarquables",
@@ -1688,7 +1709,8 @@ export default {
       "num": 1,
       "text": "qcmMono"
     },
-    "interactifReady": false,
+    "interactifReady": true,
+    "interactifType": "mathLive",
     "name": "5N13-2"
   },
   "5N13": {
@@ -1699,7 +1721,8 @@ export default {
       "num": 3,
       "text": "AMCOpen"
     },
-    "interactifReady": false,
+    "interactifReady": true,
+    "interactifType": "mathLive",
     "name": "5N13"
   },
   "5N14-2": {
@@ -1751,7 +1774,7 @@ export default {
       "text": "qcmMono"
     },
     "interactifReady": true,
-    "interactifType": "export const interactifType non présent",
+    "interactifType": "mathLive",
     "name": "5N20"
   },
   "5P10": {
@@ -1765,7 +1788,8 @@ export default {
     "titre": "Problème de vitesse",
     "url": "/exercices/5e/5P11-1.js",
     "amcReady": false,
-    "interactifReady": false,
+    "interactifReady": true,
+    "interactifType": "mathLive",
     "name": "5P11-1"
   },
   "5R10-0": {
@@ -2910,7 +2934,7 @@ export default {
       "text": "qcmMono"
     },
     "interactifReady": true,
-    "interactifType": "export const interactifType non présent",
+    "interactifType": "mathLive",
     "name": "6N41"
   },
   "6N43-2": {
