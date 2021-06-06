@@ -1,18 +1,19 @@
 import Exercice from '../Exercice.js'
 import { listeQuestionsToContenu, randint, abs, reduireAxPlusB, texFractionReduite, pgcd } from '../../modules/outils.js'
 import { repere2, courbe2, segment, tracePoint, labelPoint, point, mathalea2d } from '../../modules/2d.js'
-// import { setReponse, ajouteChampTexteMathlive } from '../../modules.gestionInteractifs.js'
+import { setReponse, ajouteChampTexteMathlive } from '../../modules.gestionInteractifs.js'
 export const titre = 'Lecture graphique des coefficients d\'une équation réduite '
-// export const interactifReady = true
-// export const interactifType = 'mathlive'
+export const interactifReady = true
+export const interactifType = 'mathlive'
 /**
+ totoche
 
 */
 export default function lecturegraphiquedeaetb () {
   Exercice.call(this)
   this.titre = titre
-  // this.interactifReady = interactifReady
-  // this.interactifType = interactifType
+  this.interactifReady = interactifReady
+  this.interactifType = interactifType
   this.consigne = 'Equation réduite de droite et représentation graphique '
   this.nbQuestions = 3// On complète le nb de questions
   this.nbCols = 2
@@ -68,7 +69,7 @@ export default function lecturegraphiquedeaetb () {
           xmax: 6,
           ymax: 6
         }, r, f, c)// On trace le graphique
-        // setReponse(this, i, reduireAxPlusB(a, b))
+        setReponse(this, i, reduireAxPlusB(a, b))
       }
       if (this.sup === 2) { // cas du coeff directeur fractionnaire
         a = randint(-5, 5) // numérateut coefficient directeur
@@ -141,9 +142,9 @@ export default function lecturegraphiquedeaetb () {
 
           }, r, f, s1, s2, t, l, c)
         }// On trace le graphique
-        // setReponse(this, i, reduireAxPlusB(a / d, b))
+        setReponse(this, i, reduireAxPlusB(a / d, b))
       }
-      // texte += ajouteChampTexteMathlive(this, i)
+      texte += ajouteChampTexteMathlive(this, i)
       if (this.listeQuestions.indexOf(texte) === -1) {
         // Si la question n'a jamais été posée, on en créé une autre
         this.listeQuestions.push(texte)

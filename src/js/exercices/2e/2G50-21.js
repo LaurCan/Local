@@ -3,7 +3,7 @@ import { listeQuestionsToContenu, randint, abs, reduireAxPlusB, texFractionRedui
 import { repere2, courbe2, segment, tracePoint, labelPoint, point, mathalea2d } from '../../modules/2d.js'
 
 export const titre = 'Lecture graphique des coefficients d\'une équation réduite '
-
+// totoche totoche
 /**
 
 */
