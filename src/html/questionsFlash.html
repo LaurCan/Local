@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Questions Flash MathAlea</title>
+        <meta name="description" content="Questions Flash MathAlea">
+        <meta name="keywords" content="Questions Flash MathAlea">
+    </head>
+    <body>
+        <input type="text" placeholder="ex : 3P10" id="input1">
+        <input type="text" placeholder="ex : 3G40" id="input2">
+        <input type="text" placeholder="ex : 3S15" id="input3">
+        <button type="button" onclick="AffQuestions();">Afficher les questions</button>
+        <button onclick="AffReponses()">Afficher les réponses</button> 
+        <style>
+            .gridWrap {
+              display: grid;
+              grid-template-columns: 50% 50%;
+              width: 100%;
+            }
+            .gridCol {
+              padding: 10px;
+            }
+        </style>
+             
+        <div class="gridWrap">
+            <div class="gridCol"><div class="Question1recto"></div><div class="Question2recto"></div><div class="Question3recto"></div></div>
+            <div class="gridCol"><div class="Question1verso"></div><div class="Question2verso"></div><div class="Question3verso"></div></div>
+        </div>
+
+        <script>
+            var graine = Math.random().toString(16).substr(2, 4);
+            var url ="/exercice.html?ex=µ,nbQuestions=1&serie=" + graine;
+            function setHeight(hauteur){
+                var frame = document.getElementById(hauteur);
+                frame.onload = function() {
+                    frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
+                    frame.style.width  = frame.contentWindow.document.body.scrollWidth + 'px';
+                }
+            }
+            function Aff(rectoOuVerso, numero){
+                let urlModifie = url.replace("µ",document.getElementById("input"+numero).value);
+                let nomFrame = rectoOuVerso + "Frame" + numero;
+                let fields = document.querySelectorAll(".Question"+numero+rectoOuVerso);
+                fields.forEach(function(item){
+                    item.innerHTML = "<iframe scrolling=\"no\" id=" + nomFrame + " width=\"100%\" frameborder=\"0\" src=" + urlModifie + "&v=" + rectoOuVerso + "></iframe>";
+                });
+                setHeight(nomFrame);
+            }
+            function AffQuestions(){
+                Aff("recto","1");
+                Aff("recto","2");
+                Aff("recto","3");
+            }
+            function AffReponses(){
+                Aff("verso","1");
+                Aff("verso","2");
+                Aff("verso","3");
+            }
+        </script>
+    </body>
+</html>
