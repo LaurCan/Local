@@ -32,10 +32,10 @@
               width: 100%;
             }
             .exerciceWrap {
-                padding: 10px;
+                padding: 2px;
             }
             .boutonsWrap {
-                padding: 10px;
+                padding: 2px;
             }
         </style>
     </head>
@@ -44,44 +44,35 @@
         <!-- Les champs pour entrer les numéros des exercices ainsi que les paramètres -->
         <!-- Question 1 -->
         <span class="exerciceWrap">
-            <div class="ui small icon input">
+            <div class="ui small left action input">
+                <button class="ui teal small button">Ex 1</button>
                 <input type="text" onclick="onClickChampEx('inputEx1')" onkeyup="onKeyChampEx('inputEx1')" placeholder="3P10" id="inputEx1" size ="5">
-            </div>
-            <div class="ui small icon input">
                 <input type="text" onclick="onClickChampSup1('inputSup11')" onkeyup="onKeyChampSup1('inputSup11')" placeholder="op1" id="inputSup11" size ="3">
-            </div>
-            <div class="ui small icon input">
                 <input type="text" onclick="onClickChampSup2('inputSup21')" onkeyup="onKeyChampSup2('inputSup21')" placeholder="op2" id="inputSup21" size ="3">
             </div>
         </span>
         <!-- Question 2 -->
         <span class="exerciceWrap">
-            <div class="ui small icon input">
+            <div class="ui small left action input">
+                <button class="ui yellow small button">Ex 2</button>
                 <input type="text" onclick="onClickChampEx('inputEx2')" onkeyup="onKeyChampEx('inputEx2')" placeholder="3G40" id="inputEx2" size ="5">
-            </div>
-            <div class="ui small icon input">
                 <input type="text" onclick="onClickChampSup1('inputSup12')" onkeyup="onKeyChampSup1('inputSup12')" placeholder="op1" id="inputSup12" size ="3">
-            </div>
-            <div class="ui small icon input">
                 <input type="text" onclick="onClickChampSup2('inputSup22')" onkeyup="onKeyChampSup2('inputSup22')" placeholder="op2" id="inputSup22" size ="3">
             </div>
         </span>
         <!-- Question 3 -->
         <span class="exerciceWrap">
-            <div class="ui small icon input">
+            <div class="ui small left action input">
+                <button class="ui pink small button">Ex 3</button>
                 <input type="text" onclick="onClickChampEx('inputEx3')" onkeyup="onKeyChampEx('inputEx3')" placeholder="3S15" id="inputEx3" size ="5">
-            </div>
-            <div class="ui small icon input">
                 <input type="text" onclick="onClickChampSup1('inputSup13')" onkeyup="onKeyChampSup1('inputSup13')" placeholder="op1" id="inputSup13" size ="3">
-            </div>
-            <div class="ui small icon input">
                 <input type="text" onclick="onClickChampSup2('inputSup23')" onkeyup="onKeyChampSup2('inputSup23')" placeholder="op2" id="inputSup23" size ="3">
             </div>
         </span>
         <!-- Les boutons -->
         <span class="boutonsWrap">
-            <button class="ui violet button" onclick="AffQuestions();">Afficher les questions</button>
-            <button class="ui green button" onclick="AffReponses()">Afficher les réponses</button> 
+            <button class="ui small violet button" onclick="AffQuestions();">Afficher les questions</button>
+            <button class="ui small green button" onclick="AffReponses()">Afficher les réponses</button> 
         </span>
         <!-- La liste des exercices qui sera remplie par le javascript -->
         <div id = "container"></div>
