@@ -17,86 +17,210 @@
         <!-- JQuery-->
         <script src="/assets/externalJs/jquery-3.6.0.min.js"></script>
         <script src="/assets/externalJs/jquery-ui-1.12.1.min.js"></script>
-  
 
         <!-- Semantic UI-->
         <link rel="stylesheet" type="text/css" href="/assets/externalJs/semantic-ui/semantic.min.css">
         <script src="/assets/externalJs/semantic-ui/semantic.min.js" type="text/javascript"></script>
         <script src="/assets/externalJs/semantic-ui/components/state.min.js"></script>
         <title>Questions Flash MathALÉA</title>
-    </head>
 
-    <body>
-        <div class="ui input">
-            <input type="text" value="3P10" id="input1">
-        </div>
-        <div class="ui input">
-            <input type="text" value="3G40" id="input2">
-        </div>
-        <div class="ui input">
-            <input type="text" value="3S15" id="input3">
-        </div>
-        <button class="ui button" onclick="AffQuestions();">Afficher les questions</button>
-        <button class="ui button" onclick="AffReponses()">Afficher les réponses</button> 
+        <!-- Style -->
         <style>
             .gridWrap {
               display: grid;
               grid-template-columns: 50% 50%;
               width: 100%;
             }
+            .exerciceWrap {
+                padding: 10px;
+            }
+            .boutonsWrap {
+                padding: 10px;
+            }
         </style>
-             
+    </head>
+
+    <body>
+        <!-- Les champs pour entrer les numéros des exercices ainsi que les paramètres -->
+        <!-- Question 1 -->
+        <span class="exerciceWrap">
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampEx('inputEx1')" onkeyup="onKeyChampEx('inputEx1')" placeholder="3P10" id="inputEx1" size ="5">
+            </div>
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampSup1('inputSup11')" onkeyup="onKeyChampSup1('inputSup11')" placeholder="op1" id="inputSup11" size ="3">
+            </div>
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampSup2('inputSup21')" onkeyup="onKeyChampSup2('inputSup21')" placeholder="op2" id="inputSup21" size ="3">
+            </div>
+        </span>
+        <!-- Question 2 -->
+        <span class="exerciceWrap">
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampEx('inputEx2')" onkeyup="onKeyChampEx('inputEx2')" placeholder="3G40" id="inputEx2" size ="5">
+            </div>
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampSup1('inputSup12')" onkeyup="onKeyChampSup1('inputSup12')" placeholder="op1" id="inputSup12" size ="3">
+            </div>
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampSup2('inputSup22')" onkeyup="onKeyChampSup2('inputSup22')" placeholder="op2" id="inputSup22" size ="3">
+            </div>
+        </span>
+        <!-- Question 3 -->
+        <span class="exerciceWrap">
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampEx('inputEx3')" onkeyup="onKeyChampEx('inputEx3')" placeholder="3S15" id="inputEx3" size ="5">
+            </div>
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampSup1('inputSup13')" onkeyup="onKeyChampSup1('inputSup13')" placeholder="op1" id="inputSup13" size ="3">
+            </div>
+            <div class="ui small icon input">
+                <input type="text" onclick="onClickChampSup2('inputSup23')" onkeyup="onKeyChampSup2('inputSup23')" placeholder="op2" id="inputSup23" size ="3">
+            </div>
+        </span>
+        <!-- Les boutons -->
+        <span class="boutonsWrap">
+            <button class="ui button" onclick="AffQuestions();">Afficher les questions</button>
+            <button class="ui button" onclick="AffReponses()">Afficher les réponses</button> 
+        </span>
+        <!-- La liste des exercices qui sera remplie par le javascript -->
+        <div id = "container"></div>
+
+        <!-- La grille qui va contenir les questions et les réponses -->
         <div class="gridWrap">
             <div class="gridCol"><div class="Question1recto"></div><div class="Question2recto"></div><div class="Question3recto"></div></div>
             <div class="gridCol"><div class="Question1verso"></div><div class="Question2verso"></div><div class="Question3verso"></div></div>
         </div>
+    </body>
+    <script>
+        let champActif;
+        // J'aimerais remplacer cette liste par la liste des exercices
+        const listeDesExercices = ['alpha un', 'bravo deux', 'charlie trois', 'delta quatre', 'echo cinq']
+        // J'aimerais bien aussi trouver un moyen de créer une liste des éventuels sup1 et sup2
+        let listeDesSup1 = ['1 : alpha', '2 : beta', '3 : gamma'], listeDesSup2 = ['1 : a', '2 : b', '3 : c'];
+        // Crée l'élément ul qui va recevoir la liste des exercices et fixe ses attributs.
+        const cont = document.getElementById('container')
+        const ul = document.createElement('ul')
+        ul.setAttribute('style', 'padding: 0; margin: 0; list-style-type: none;')
+        ul.setAttribute('id', 'ulDesExercices')
+        // Remplit l'élément ul de li à partir de la liste des exercices, je pense en faire une fonction pour la réutiliser pour les sup1 et sup2
+        for (i = 0; i <= listeDesExercices.length - 1; i++) {
+            // Création puis setup du li
+            const li = document.createElement('li')
+            li.innerHTML = '<a href="#" style="color: black;" >' + listeDesExercices[i] + '</a>'
+            li.setAttribute('style', 'border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block')
+            // Ajoute des listeners pour changer la background-color lors du survol par la souris
+            li.addEventListener('mouseenter', e => {
+                li.setAttribute('style', 'border: 1px solid #ddd; margin-top: -1px; background-color: #eee; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block')
+            })
+            li.addEventListener('mouseleave', e => {
+                li.setAttribute('style', 'border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block')
+            })
+            // Ajoute un listener pour écrire le numéro de l'exercice cliqué dans le champActif
+            li.addEventListener('click', e => {
+                document.getElementById(champActif).value = li.textContent.substr(0, li.textContent.indexOf(" "));
+            })
+            // Append du li
+            ul.appendChild(li)
+        }
+        // Append du ul
+        cont.appendChild(ul)
 
-        <script>
-            var graine = Math.random().toString(16).substr(2, 4);
-            var url ="/exercice.html?ex=µ,n=1,i=0&serie=" + graine;
-            //Ajuste la hauteur de la question (recto) ou de la réponse (verso)
-            function setHeight(rectoOuVerso, numeroQuestion){
-                let frameRecto = document.getElementById("rectoFrame" + numeroQuestion);
-                let frameVerso = document.getElementById("versoFrame" + numeroQuestion);
-                let hauteurRecto = "200px";
-                let hauteurVerso = "200px";
-                if (rectoOuVerso === "recto"){
-                    frameRecto.onload = function() {
-                        hauteurRecto = frameRecto.contentWindow.document.body.scrollHeight;
-                        frameRecto.style.height = hauteurRecto + 'px';
-                    }
-                } else if (rectoOuVerso === "verso"){
-                    frameVerso.onload = function() {
-                        hauteurVerso = frameVerso.contentWindow.document.body.scrollHeight;
-                        frameRecto.style.height = hauteurVerso + 'px';
-                        frameVerso.style.height = hauteurVerso + 'px';
-                    }
+        // Cache la liste des exercices par défaut
+        document.getElementById('ulDesExercices').style.display = 'none'
+        // Setup le modèle d'url pour les exercices
+        let graine = Math.random().toString(16).substr(2, 4)
+        let url = '/exercice.html?ex=µ,n=1,i=0&serie=' + graine
+
+        //*****************
+        //*****************
+        //**  Fonctions  **
+        //*****************
+        //*****************
+
+        //***************
+        //** Recherche **
+        //***************
+
+        // Affiche la liste des exercices lorsqu'on clique sur l'un des champs, je pense probablement la modifier pour afficher la liste des sup1 et sup2 lorsque le champ sera sélectionné
+        function onClickChampEx (inputName) {
+            champActif = inputName;
+            let ul, li
+            ul = document.getElementById('ulDesExercices')
+            ul.style.display = ''
+            li = ul.getElementsByTagName('li')
+            for (i = 0; i < li.length; i++) {
+                li[i].style.display = ''
+            }
+        }
+
+        // Filtre la liste des exercices lorsqu'on tape dans l'un des champs, je pense probablement la modifier pour afficher la liste des sup1 et sup2 lorsque le champ sera sélectionné
+        function onKeyChampEx (inputName) {
+            champActif = inputName;
+            let input, filter, ul, li, a, i, txtValue
+            input = document.getElementById(inputName)
+            filter = input.value.toUpperCase()
+            ul = document.getElementById('ulDesExercices')
+            li = ul.getElementsByTagName('li')
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName('a')[0]
+                txtValue = a.textContent || a.innerText
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = ''
+                } else {
+                    li[i].style.display = 'none'
                 }
             }
-            //insère l'iframe de la question (recto) ou de la réponse (verso)
-            function Aff(rectoOuVerso, numeroQuestion){
-                let urlModifie = url.replace("µ",document.getElementById("input"+numeroQuestion).value);
-                let idFrame = rectoOuVerso + "Frame" + numeroQuestion;
-                let fields = document.querySelectorAll(".Question"+numeroQuestion+rectoOuVerso);
-                fields.forEach(function(item){
-                    item.innerHTML = "<iframe scrolling=\"no\" id=\"" + idFrame + "\" width=\"100%\" frameborder=\"0\" src=\"" + urlModifie + "&v=" + rectoOuVerso + "\"></iframe>";
-                });
-                setHeight(rectoOuVerso, numeroQuestion);
+        }
+
+        //*********************************************
+        //** Affichage des questions et des réponses **
+        //*********************************************
+        
+        // Ajuste la hauteur de la question (recto) ou de la réponse (verso)
+        function setHeight (rectoOuVerso, numeroQuestion) {
+            const frameRecto = document.getElementById('rectoFrame' + numeroQuestion)
+            const frameVerso = document.getElementById('versoFrame' + numeroQuestion)
+            let hauteurRecto = '200px'
+            let hauteurVerso = '200px'
+            if (rectoOuVerso === 'recto') {
+                frameRecto.onload = function () {
+                hauteurRecto = frameRecto.contentWindow.document.body.scrollHeight
+                frameRecto.style.height = hauteurRecto + 'px'
+                }
+            } else if (rectoOuVerso === 'verso') {
+                frameVerso.onload = function () {
+                hauteurVerso = frameVerso.contentWindow.document.body.scrollHeight
+                frameRecto.style.height = hauteurVerso + 'px'
+                frameVerso.style.height = hauteurVerso + 'px'
+                }
             }
-            //affiche les questions
-            function AffQuestions(){
-            graine = Math.random().toString(16).substr(2, 4);
-            url ="/exercice.html?ex=µ,nbQuestions=1&serie=" + graine;
-                Aff("recto","1");
-                Aff("recto","2");
-                Aff("recto","3");
-            }
-            //affiche les réponses
-            function AffReponses(){
-                Aff("verso","1");
-                Aff("verso","2");
-                Aff("verso","3");
-            }
-        </script>
-    </body>
+        }
+        // insère l'iframe de la question (recto) ou de la réponse (verso)
+        function Aff (rectoOuVerso, numeroQuestion) {
+            const urlModifie = url.replace('µ', document.getElementById('inputEx' + numeroQuestion).value)
+            const idFrame = rectoOuVerso + 'Frame' + numeroQuestion
+            const fields = document.querySelectorAll('.Question' + numeroQuestion + rectoOuVerso)
+            fields.forEach(function (item) {
+               item.innerHTML = '<iframe scrolling="no" id="' + idFrame + '" width="100%" frameborder="0" src="' + urlModifie + '&v=' + rectoOuVerso + '"></iframe>'
+            })
+        setHeight(rectoOuVerso, numeroQuestion)
+        }
+        // Cache la liste de questions, relance l'aléatoire et affiche les questions
+        function AffQuestions () {
+            document.getElementById('ulDesExercices').style.display = 'none'
+            graine = Math.random().toString(16).substr(2, 4)
+            url = '/exercice.html?ex=µ,nbQuestions=1&serie=' + graine
+            Aff('recto', '1')
+            Aff('recto', '2')
+            Aff('recto', '3')
+        }
+        // Cache la liste de questions et affiche les réponses
+        function AffReponses () {
+            document.getElementById('ulDesExercices').style.display = 'none'
+            Aff('verso', '1')
+            Aff('verso', '2')
+            Aff('verso', '3')
+        }
+    </script>
 </html>
